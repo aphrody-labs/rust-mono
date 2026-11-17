@@ -1,3 +1,7 @@
 id = "rust-mono"
 kind = "research"
 org = "aphrody-labs"
+
+[exceptions]
+I002 = "the 51 submodules are the product: forks of this organization, pinned by gitlink, relative URLs; no build or test of this repository needs a checkout of them"
+I071 = "the organization standard calls its reusable workflows at @main"

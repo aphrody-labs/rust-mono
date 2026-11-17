@@ -56,10 +56,11 @@ let repos: Record<string, Repo>;
 const fixed = () => new Date("2026-11-17T12:00:00Z");
 
 beforeEach(async () => {
-  process.env.GIT_AUTHOR_NAME = process.env.GIT_COMMITTER_NAME = "t";
-  process.env.GIT_AUTHOR_EMAIL = process.env.GIT_COMMITTER_EMAIL = "t@example.com";
   dir = await mkdtemp(join(tmpdir(), "rust-mono-sync-"));
   Bun.spawnSync(["git", "init", "-q", "-b", "main"], { cwd: dir });
+  // Repository-local identity: CI runners have no global one.
+  Bun.spawnSync(["git", "config", "user.name", "test"], { cwd: dir });
+  Bun.spawnSync(["git", "config", "user.email", "test@example.com"], { cwd: dir });
   await Bun.write(join(dir, "forks.toml"), forksToml);
   repos = {
     "org/ff": { parent: "up/ff", head: sha("1"), ahead: 0, behind: 5 },

@@ -93,7 +93,8 @@ export async function run(argv: string[], gh?: Gh, now: () => Date = () => new D
   const ledgerDir = resolve(root, opts.ledger);
   const previous = await readLedger(ledgerDir);
   const pins = await gitlinks(root);
-  const outs = await syncAll(client, m, pins, { apply: opts.apply, now }, opts.only);
+  const runAt = now(); // one timestamp per run: its ledger entries group together
+  const outs = await syncAll(client, m, pins, { apply: opts.apply, now: () => runAt }, opts.only);
   if (opts.record) await Bun.write(opts.record, JSON.stringify(store, null, 1) + "\n");
 
   console.log(renderOutcomes(outs));
@@ -107,12 +108,12 @@ export async function run(argv: string[], gh?: Gh, now: () => Date = () => new D
   for (const o of bumped) await setGitlink(root, o.entry.fork, o.bump!);
   if (worthy.length) {
     await mkdir(ledgerDir, { recursive: true });
-    const file = ledgerFile(ledgerDir, now());
+    const file = ledgerFile(ledgerDir, runAt);
     const old = await Bun.file(file).text().catch(() => "");
     await Bun.write(file, old + renderLedger(worthy));
   }
   if (opts.commit && (bumped.length || worthy.length)) {
-    if (worthy.length) await stage(root, [relative(root, ledgerFile(ledgerDir, now())).replaceAll("\\", "/")]);
+    if (worthy.length) await stage(root, [relative(root, ledgerFile(ledgerDir, runAt)).replaceAll("\\", "/")]);
     console.log(`committed ${(await commit(root, commitMessage(worthy.length ? worthy : bumped.map((o) => o.entry)))).slice(0, 9)}`);
   }
   return errors.length ? 1 : 0;
