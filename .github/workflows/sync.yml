@@ -48,6 +48,7 @@ jobs:
         run: bun test tools
 
       - name: Sync
+        id: sync
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
           APPLY: ${{ github.event_name == 'schedule' || inputs.apply }}
@@ -61,7 +62,7 @@ jobs:
           fi
 
       - name: Push
-        if: always() && (github.event_name == 'schedule' || inputs.apply)
+        if: always() && steps.sync.outcome != 'skipped' && (github.event_name == 'schedule' || inputs.apply)
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
         run: |

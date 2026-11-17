@@ -41,7 +41,13 @@ The organization already provides what a cross-repository write needs, read with
 
 The app is installed on all repositories of the organization with `contents: write` and `workflows: write`, which is what `merge-upstream` needs on a fork and what a push to this repository's `main` needs. The workflow mints an installation token with `actions/create-github-app-token` (pinned to a SHA), uses it for `GH_TOKEN` and for the push, and never writes a secret to disk or to the log. `APHRODY_APP_KEY` is visible to selected repositories only, so this repository had to be added to its list (`PUT /orgs/<org>/actions/secrets/APHRODY_APP_KEY/repositories/<id>`).
 
-A comment in another repository of the organization (`nie`, vendor-sync) says the key may not be a usable private key. The first workflow run is the proof either way; its result is recorded in the commit log and in the report of the unit that added the workflow.
+### Current state of the token (2026-11-17)
+
+The first run of the workflow (run 44019759711, `workflow_dispatch`) failed in the step "Token for the forks and this repository" with `Invalid keyData` / `Failed to read private key`: the value stored in the org secret `APHRODY_APP_KEY` is not a PEM private key that `actions/create-github-app-token` can import. Nothing after that step ran on the runner, so the Sync and Push steps have not been exercised there. The variable `APHRODY_APP_CLIENT_ID` and the app installation are fine (the step reaches the key import). The key is not in the vault of the workstation either (`secretHas("APHRODY_APP_KEY")` is false), so it cannot be re-published from there. The same value explains the "not a usable private key" warning in `nie`'s vendor-sync workflow.
+
+What is missing, exactly: a valid PEM private key of the GitHub App `aphrody-labs` stored as the org secret `APHRODY_APP_KEY`, visible to `legacy`, `nie` and `rust-mono`. Generating one is an owner action on the app's settings page (Generate a private key), then `gh secret set APHRODY_APP_KEY --org aphrody-labs --visibility selected --repos legacy,nie,rust-mono < key.pem`. No workflow change is needed after that: re-run `gh workflow run sync.yml -f apply=true`.
+
+Until then the sync runs from a workstation with `bun tools/sync.ts --apply --commit` and a push, which is how the first real run was done (ledger entries of 2026-11-17T04:47Z).
 
 ## Failure modes
 
