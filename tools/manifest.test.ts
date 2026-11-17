@@ -41,3 +41,11 @@ test("layoutProblems reports a stale .gitmodules, missing gitlinks and strays", 
   expect(bad.join("\n")).toMatch(/1 gitlink\(s\) missing: g\/a/);
   expect(bad.join("\n")).toMatch(/gitlink z\/z is not in forks.toml/);
 });
+
+test("a consumer outside the fork organisation gets two-level relative URLs, one inside gets one level", () => {
+  const same = parseManifest(base + fork());
+  expect(renderGitmodules(same)).toContain("url = ../a.git\n");
+  const other = parseManifest(`[meta]\norg = "forks"\nconsumer = "app"\n[groups]\ng = "x"\n` + fork());
+  expect(other.consumer).toBe("app");
+  expect(renderGitmodules(other)).toContain("url = ../../forks/a.git\n");
+});

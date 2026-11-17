@@ -406,3 +406,206 @@ branch = "main"
 role = "consumer"
 policy = "ff-only"
 note = "Carries thousands of commits and is edited directly by the owner: sync fast-forwards only, a diverged fork is reported, never auto-merged."
+
+[[fork]]
+path = "wasm/component-model"
+name = "component-model"
+upstream = "WebAssembly/component-model"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/stack-switching"
+name = "stack-switching"
+upstream = "WebAssembly/stack-switching"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasi-libc"
+name = "wasi-libc"
+upstream = "WebAssembly/wasi-libc"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/spec"
+name = "spec"
+upstream = "WebAssembly/spec"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/esm-integration"
+name = "esm-integration"
+upstream = "WebAssembly/esm-integration"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/website"
+name = "website"
+upstream = "WebAssembly/website"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wabt"
+name = "wabt"
+upstream = "WebAssembly/wabt"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/tool-conventions"
+name = "tool-conventions"
+upstream = "WebAssembly/tool-conventions"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/testsuite"
+name = "testsuite"
+upstream = "WebAssembly/testsuite"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/WASI"
+name = "WASI"
+upstream = "WebAssembly/WASI"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/proposals"
+name = "proposals"
+upstream = "WebAssembly/proposals"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/shared-everything-threads"
+name = "shared-everything-threads"
+upstream = "WebAssembly/shared-everything-threads"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasi-crypto"
+name = "wasi-crypto"
+upstream = "WebAssembly/wasi-crypto"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/threads"
+name = "threads"
+upstream = "WebAssembly/threads"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasi-webgpu"
+name = "wasi-webgpu"
+upstream = "WebAssembly/wasi-webgpu"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/js-promise-integration"
+name = "js-promise-integration"
+upstream = "WebAssembly/js-promise-integration"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasm-c-api"
+name = "wasm-c-api"
+upstream = "WebAssembly/wasm-c-api"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/design"
+name = "design"
+upstream = "WebAssembly/design"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasi-nn"
+name = "wasi-nn"
+upstream = "WebAssembly/wasi-nn"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasi-threads"
+name = "wasi-threads"
+upstream = "WebAssembly/wasi-threads"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasp"
+name = "wasp"
+upstream = "WebAssembly/wasp"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/debugging"
+name = "debugging"
+upstream = "WebAssembly/debugging"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/walrus"
+name = "walrus"
+upstream = "wasm-bindgen/walrus"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wasm-pack"
+name = "wasm-pack"
+upstream = "wasm-bindgen/wasm-pack"
+branch = "master"
+role = "wasm"
+
+[[fork]]
+path = "wasm/ts-gen"
+name = "ts-gen"
+upstream = "wasm-bindgen/ts-gen"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/weedle"
+name = "weedle"
+upstream = "wasm-bindgen/weedle"
+branch = "master"
+role = "wasm"
+
+[[fork]]
+path = "wasm/js-bindgen"
+name = "js-bindgen"
+upstream = "wasm-bindgen/js-bindgen"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/rust-externref-rfc"
+name = "rust-externref-rfc"
+upstream = "wasm-bindgen/rust-externref-rfc"
+branch = "main"
+role = "wasm"
+
+[[fork]]
+path = "wasm/wgpu"
+name = "wgpu"
+upstream = "gfx-rs/wgpu"
+branch = "trunk"
+role = "wasm"

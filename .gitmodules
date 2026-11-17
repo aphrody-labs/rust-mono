@@ -151,3 +151,90 @@
 [submodule "consumers/bun"]
 	path = consumers/bun
 	url = ../bun.git
+[submodule "wasm/component-model"]
+	path = wasm/component-model
+	url = ../component-model.git
+[submodule "wasm/stack-switching"]
+	path = wasm/stack-switching
+	url = ../stack-switching.git
+[submodule "wasm/wasi-libc"]
+	path = wasm/wasi-libc
+	url = ../wasi-libc.git
+[submodule "wasm/spec"]
+	path = wasm/spec
+	url = ../spec.git
+[submodule "wasm/esm-integration"]
+	path = wasm/esm-integration
+	url = ../esm-integration.git
+[submodule "wasm/website"]
+	path = wasm/website
+	url = ../website.git
+[submodule "wasm/wabt"]
+	path = wasm/wabt
+	url = ../wabt.git
+[submodule "wasm/tool-conventions"]
+	path = wasm/tool-conventions
+	url = ../tool-conventions.git
+[submodule "wasm/testsuite"]
+	path = wasm/testsuite
+	url = ../testsuite.git
+[submodule "wasm/WASI"]
+	path = wasm/WASI
+	url = ../WASI.git
+[submodule "wasm/proposals"]
+	path = wasm/proposals
+	url = ../proposals.git
+[submodule "wasm/shared-everything-threads"]
+	path = wasm/shared-everything-threads
+	url = ../shared-everything-threads.git
+[submodule "wasm/wasi-crypto"]
+	path = wasm/wasi-crypto
+	url = ../wasi-crypto.git
+[submodule "wasm/threads"]
+	path = wasm/threads
+	url = ../threads.git
+[submodule "wasm/wasi-webgpu"]
+	path = wasm/wasi-webgpu
+	url = ../wasi-webgpu.git
+[submodule "wasm/js-promise-integration"]
+	path = wasm/js-promise-integration
+	url = ../js-promise-integration.git
+[submodule "wasm/wasm-c-api"]
+	path = wasm/wasm-c-api
+	url = ../wasm-c-api.git
+[submodule "wasm/design"]
+	path = wasm/design
+	url = ../design.git
+[submodule "wasm/wasi-nn"]
+	path = wasm/wasi-nn
+	url = ../wasi-nn.git
+[submodule "wasm/wasi-threads"]
+	path = wasm/wasi-threads
+	url = ../wasi-threads.git
+[submodule "wasm/wasp"]
+	path = wasm/wasp
+	url = ../wasp.git
+[submodule "wasm/debugging"]
+	path = wasm/debugging
+	url = ../debugging.git
+[submodule "wasm/walrus"]
+	path = wasm/walrus
+	url = ../walrus.git
+[submodule "wasm/wasm-pack"]
+	path = wasm/wasm-pack
+	url = ../wasm-pack.git
+[submodule "wasm/ts-gen"]
+	path = wasm/ts-gen
+	url = ../ts-gen.git
+[submodule "wasm/weedle"]
+	path = wasm/weedle
+	url = ../weedle.git
+[submodule "wasm/js-bindgen"]
+	path = wasm/js-bindgen
+	url = ../js-bindgen.git
+[submodule "wasm/rust-externref-rfc"]
+	path = wasm/rust-externref-rfc
+	url = ../rust-externref-rfc.git
+[submodule "wasm/wgpu"]
+	path = wasm/wgpu
+	url = ../wgpu.git

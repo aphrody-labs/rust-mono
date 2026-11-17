@@ -184,9 +184,15 @@ test("replaying the recorded real run (2026-11-17) reproduces its committed ledg
   const first = all.filter((e) => e.ts === all[0]!.ts);
   expect(first.length).toBeGreaterThan(5);
 
+  // Only the forks the recording knows: forks added to the manifest later have no recorded responses.
+  const full = await Bun.file(join(root, "forks.toml")).text();
   const manifest = await loadManifest(join(root, "forks.toml"));
-  await Bun.write(join(dir, "forks.toml"), await Bun.file(join(root, "forks.toml")).text());
-  for (const f of manifest.forks) {
+  const recordedName = (f: { name: string; branch: string }) => `GET repos/${manifest.org}/${f.name}/branches/${f.branch}` in recorded;
+  const unknown = manifest.forks.filter((f) => !recordedName(f));
+  const [header, ...blocks] = full.split(/\n(?=\[\[fork\]\])/);
+  const kept = blocks.filter((block) => !unknown.some((f) => block.includes(`\nname = "${f.name}"\n`)));
+  await Bun.write(join(dir, "forks.toml"), [header, ...kept].join("\n"));
+  for (const f of manifest.forks.filter(recordedName)) {
     const before = recorded[`GET repos/${manifest.org}/${f.name}/branches/${f.branch}`]![0]!.json as { commit: { sha: string } };
     await setGitlink(dir, f.path, before.commit.sha);
   }

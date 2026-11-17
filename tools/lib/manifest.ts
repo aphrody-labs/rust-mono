@@ -33,6 +33,8 @@ export interface Fork {
 
 export interface Manifest {
   org: string;
+  /** Organisation of the repository that carries the submodules, when it is not the fork organisation. */
+  consumer: string;
   groups: Record<string, string>;
   forks: Fork[];
   notForked: { upstream: string; reason: string }[];
@@ -50,6 +52,7 @@ export function parseManifest(text: string): Manifest {
   const doc = TOML.parse(text) as Raw;
   const meta = (doc.meta ?? {}) as Raw;
   const org = str(meta, "org", "[meta]");
+  const consumer = meta.consumer === undefined ? org : str(meta, "consumer", "[meta]");
   const groups = (doc.groups ?? {}) as Record<string, string>;
   const forks: Fork[] = [];
   for (const [i, e] of ((doc.fork ?? []) as Raw[]).entries()) {
@@ -82,7 +85,7 @@ export function parseManifest(text: string): Manifest {
     upstream: str(e, "upstream", `[[not_forked]] #${i + 1}`),
     reason: str(e, "reason", `[[not_forked]] #${i + 1}`),
   }));
-  const m: Manifest = { org, groups, forks, notForked };
+  const m: Manifest = { org, consumer, groups, forks, notForked };
   const problems = validate(m);
   if (problems.length) throw new Error(`forks.toml is invalid:\n- ${problems.join("\n- ")}`);
   return m;
@@ -111,9 +114,10 @@ export async function loadManifest(file: string): Promise<Manifest> {
 
 export const isRustSubmodule = (f: Fork): boolean => f.rustSubmodule !== undefined;
 
-/** `.gitmodules` text for a manifest: relative URLs resolve against the monorepo's own remote. */
+/** `.gitmodules` text for a manifest: relative URLs resolve against the monorepo's own remote, one level up for a fork in the same organisation, two levels up and down for another one. */
 export function renderGitmodules(m: Manifest): string {
+  const base = m.consumer === m.org ? ".." : `../../${m.org}`;
   return m.forks
-    .map((f) => `[submodule "${f.path}"]\n\tpath = ${f.path}\n\turl = ../${f.name}.git\n`)
+    .map((f) => `[submodule "${f.path}"]\n\tpath = ${f.path}\n\turl = ${base}/${f.name}.git\n`)
     .join("");
 }
