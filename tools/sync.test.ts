@@ -2,7 +2,8 @@ import { afterEach, beforeEach, expect, test } from "bun:test";
 import { mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import type { Gh, GhResult } from "./lib/gh.ts";
+import { fixture, type Gh, type GhResult, type Recording } from "./lib/gh.ts";
+import { loadManifest } from "./lib/manifest.ts";
 import { gitlinks, setGitlink } from "./lib/git.ts";
 import { isRepeat, parseLedger, type LedgerEntry } from "./lib/sync.ts";
 import { commitMessage, run } from "./sync.ts";
@@ -174,4 +175,22 @@ test("commit message lists every fork and stays within 72 characters on the subj
   const msg = commitMessage([{ ts: "t", fork: "g/a", repo: "o/a", upstream: "u/a", branch: "main", old: sha("a"), new: sha("b"), merged: 7, ahead: 0, behind: 7, status: "fast-forward" }]);
   expect(msg.split("\n")[0]!.length).toBeLessThanOrEqual(72);
   expect(msg).toContain("g/a: aaaaaaaaa..bbbbbbbbb fast-forward (+7 upstream)");
+});
+
+test("replaying the recorded real run (2026-11-17) reproduces its committed ledger entries", async () => {
+  const root = join(import.meta.dir, "..");
+  const recorded = JSON.parse(await Bun.file(join(root, "tools/fixtures/sync-run.json")).text()) as Recording;
+  const all = parseLedger(await Bun.file(join(root, "ledger/2026-11.jsonl")).text());
+  const first = all.filter((e) => e.ts === all[0]!.ts);
+  expect(first.length).toBeGreaterThan(5);
+
+  const manifest = await loadManifest(join(root, "forks.toml"));
+  await Bun.write(join(dir, "forks.toml"), await Bun.file(join(root, "forks.toml")).text());
+  for (const f of manifest.forks) {
+    const before = recorded[`GET repos/${manifest.org}/${f.name}/branches/${f.branch}`]![0]!.json as { commit: { sha: string } };
+    await setGitlink(dir, f.path, before.commit.sha);
+  }
+  expect(await quiet(() => run(args("--apply"), fixture(recorded), () => new Date(all[0]!.ts)))).toBe(0);
+  expect(await ledger()).toEqual(first);
+  expect(first.map((e) => e.status).sort()).toEqual(["diverged", "fast-forward", "fast-forward", "fast-forward", "fast-forward", "fast-forward", "fast-forward", "merged"]);
 });
