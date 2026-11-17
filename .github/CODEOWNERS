@@ -1,0 +1,3 @@
+# Copy to .github/CODEOWNERS. Not inherited from the organization. Later rules win.
+*                       @aphrody-dev
+/.github/               @aphrody-dev

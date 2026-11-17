@@ -1,0 +1,153 @@
+[submodule "compiler/rust"]
+	path = compiler/rust
+	url = ../rust.git
+[submodule "compiler/rust-lang-llvm-project"]
+	path = compiler/rust-lang-llvm-project
+	url = ../rust-lang-llvm-project.git
+[submodule "compiler/llvm-project"]
+	path = compiler/llvm-project
+	url = ../llvm-project.git
+[submodule "compiler/gcc"]
+	path = compiler/gcc
+	url = ../gcc.git
+[submodule "compiler/enzyme"]
+	path = compiler/enzyme
+	url = ../enzyme.git
+[submodule "compiler/tpde"]
+	path = compiler/tpde
+	url = ../tpde.git
+[submodule "compiler/miri"]
+	path = compiler/miri
+	url = ../miri.git
+[submodule "compiler/rustc_codegen_cranelift"]
+	path = compiler/rustc_codegen_cranelift
+	url = ../rustc_codegen_cranelift.git
+[submodule "compiler/rustc_codegen_gcc"]
+	path = compiler/rustc_codegen_gcc
+	url = ../rustc_codegen_gcc.git
+[submodule "devtools/cargo"]
+	path = devtools/cargo
+	url = ../cargo.git
+[submodule "devtools/rustup"]
+	path = devtools/rustup
+	url = ../rustup.git
+[submodule "devtools/rust-analyzer"]
+	path = devtools/rust-analyzer
+	url = ../rust-analyzer.git
+[submodule "devtools/rust-clippy"]
+	path = devtools/rust-clippy
+	url = ../rust-clippy.git
+[submodule "devtools/rustfmt"]
+	path = devtools/rustfmt
+	url = ../rustfmt.git
+[submodule "devtools/mdBook"]
+	path = devtools/mdBook
+	url = ../mdBook.git
+[submodule "std/stdarch"]
+	path = std/stdarch
+	url = ../stdarch.git
+[submodule "std/compiler-builtins"]
+	path = std/compiler-builtins
+	url = ../compiler-builtins.git
+[submodule "std/backtrace-rs"]
+	path = std/backtrace-rs
+	url = ../backtrace-rs.git
+[submodule "std/libc"]
+	path = std/libc
+	url = ../libc.git
+[submodule "std/hashbrown"]
+	path = std/hashbrown
+	url = ../hashbrown.git
+[submodule "std/cc-rs"]
+	path = std/cc-rs
+	url = ../cc-rs.git
+[submodule "registry/crates.io"]
+	path = registry/crates.io
+	url = ../crates.io.git
+[submodule "registry/docs.rs"]
+	path = registry/docs.rs
+	url = ../docs.rs.git
+[submodule "books/reference"]
+	path = books/reference
+	url = ../reference.git
+[submodule "books/book"]
+	path = books/book
+	url = ../book.git
+[submodule "books/rust-by-example"]
+	path = books/rust-by-example
+	url = ../rust-by-example.git
+[submodule "books/nomicon"]
+	path = books/nomicon
+	url = ../nomicon.git
+[submodule "books/edition-guide"]
+	path = books/edition-guide
+	url = ../edition-guide.git
+[submodule "books/rustc-dev-guide"]
+	path = books/rustc-dev-guide
+	url = ../rustc-dev-guide.git
+[submodule "books/rust-embedded-book"]
+	path = books/rust-embedded-book
+	url = ../rust-embedded-book.git
+[submodule "governance/rfcs"]
+	path = governance/rfcs
+	url = ../rfcs.git
+[submodule "governance/team"]
+	path = governance/team
+	url = ../team.git
+[submodule "governance/goals"]
+	path = governance/goals
+	url = ../goals.git
+[submodule "governance/compiler-team"]
+	path = governance/compiler-team
+	url = ../compiler-team.git
+[submodule "governance/rust-forge"]
+	path = governance/rust-forge
+	url = ../rust-forge.git
+[submodule "governance/blog.rust-lang.org"]
+	path = governance/blog.rust-lang.org
+	url = ../blog.rust-lang.org.git
+[submodule "governance/this-week-in-rust"]
+	path = governance/this-week-in-rust
+	url = ../this-week-in-rust.git
+[submodule "governance/www.rust-lang.org"]
+	path = governance/www.rust-lang.org
+	url = ../www.rust-lang.org.git
+[submodule "infra/rustc-perf"]
+	path = infra/rustc-perf
+	url = ../rustc-perf.git
+[submodule "infra/crater"]
+	path = infra/crater
+	url = ../crater.git
+[submodule "infra/bors"]
+	path = infra/bors
+	url = ../bors.git
+[submodule "infra/triagebot"]
+	path = infra/triagebot
+	url = ../triagebot.git
+[submodule "infra/simpleinfra"]
+	path = infra/simpleinfra
+	url = ../simpleinfra.git
+[submodule "wasm/wasmtime"]
+	path = wasm/wasmtime
+	url = ../wasmtime.git
+[submodule "wasm/wasm-tools"]
+	path = wasm/wasm-tools
+	url = ../wasm-tools.git
+[submodule "wasm/wit-bindgen"]
+	path = wasm/wit-bindgen
+	url = ../wit-bindgen.git
+[submodule "wasm/binaryen"]
+	path = wasm/binaryen
+	url = ../binaryen.git
+[submodule "wasm/wasm-bindgen"]
+	path = wasm/wasm-bindgen
+	url = ../wasm-bindgen.git
+[submodule "wasm/wasi-sdk"]
+	path = wasm/wasi-sdk
+	url = ../wasi-sdk.git
+[submodule "consumers/zed"]
+	path = consumers/zed
+	url = ../zed.git
+[submodule "consumers/bun"]
+	path = consumers/bun
+	url = ../bun.git

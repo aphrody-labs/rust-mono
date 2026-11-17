@@ -1,0 +1,11 @@
+{
+  "name": "rust-mono",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test tools",
+    "forks": "bun tools/forks.ts",
+    "check": "bun tools/forks.ts --check",
+    "sync": "bun tools/sync.ts"
+  }
+}

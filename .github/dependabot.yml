@@ -1,0 +1,16 @@
+# Only the manifests this repository owns. The submodules are not listed: bumping them is the job of the sync workflow.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels: [dependencies, github_actions]
+    cooldown:
+      default-days: 3
+    groups:
+      actions:
+        patterns: ["*"]
+        update-types: [minor, patch]
