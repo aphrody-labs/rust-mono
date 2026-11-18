@@ -1,5 +1,47 @@
+# Rust (github/gitignore Rust)
+target/
+**/target/
+**/*.rs.bk
+**/mutants.out*/
+rustc-ice-*.txt
+*.pdb
+
+# Bun / Node / TypeScript
 node_modules/
+dist/
+coverage/
 .cache/
+*.tsbuildinfo
 *.log
+
+# Secrets and local state (STANDARD.md section 2)
 .env
 .env.*
+!.env.example
+!.env.*.example
+.dev.vars
+*.pem
+*.key
+*.p12
+*.pfx
+id_ed25519*
+id_rsa*
+.private/
+.local/
+.claude/settings.local.json
+.claude/worktrees/
+
+# Editors and OS (github/gitignore Global)
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace

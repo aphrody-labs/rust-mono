@@ -1,5 +1,5 @@
 {
-  "name": "rust-mono",
+  "name": "@aphrody/rust-mono",
   "private": true,
   "type": "module",
   "scripts": {
